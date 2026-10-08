@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Facebook Mine</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+body{margin:0;background:#f0f2f5;font-family:Arial;color:#1c1e21}
+header{background:white;padding:18px;font-size:25px;font-weight:bold;color:#1877f2}
+main{max-width:650px;margin:auto;padding:12px}
+.card{background:white;padding:15px;margin:10px 0;border-radius:12px}
+input{width:65%;padding:14px;border:0;background:#f0f2f5;border-radius:25px}
+button{padding:12px 18px;border:0;border-radius:8px;background:#1877f2;color:white;font-weight:bold}
+.post{line-height:1.5}
+nav{position:fixed;bottom:0;left:0;right:0;background:white;padding:15px;text-align:center}
+</style>
+</head>
+<body>
+
+<header>Facebook Mine</header>
+
+<main>
+<div class="card">
+<input id="text" placeholder="What's on your mind?">
+<button onclick="post()">Post</button>
+</div>
+
+<div id="feed">
+<div class="card post">
+<b>Facebook Mine</b>
+<p>Welcome to Facebook Mine! 🎉</p>
+<hr>
+❤️ Like &nbsp;&nbsp; 💬 Comment &nbsp;&nbsp; ↗ Share
+</div>
+</div>
+</main>
+
+<nav>🏠 Home &nbsp;&nbsp; 👥 Friends &nbsp;&nbsp; ➕ Post &nbsp;&nbsp; 👤 Profile</nav>
+
+<script>
+let tg=window.Telegram.WebApp;
+tg.ready();
+tg.expand();
+
+function post(){
+let x=document.getElementById("text");
+if(!x.value.trim())return;
+let d=document.createElement("div");
+d.className="card post";
+d.innerHTML="<b>You</b><p>"+x.value.replace(/</g,"&lt;")+"</p><hr>❤️ Like &nbsp;&nbsp; 💬 Comment &nbsp;&nbsp; ↗ Share";
+document.getElementById("feed").prepend(d);
+x.value="";
+}
+</script>
+
+</body>
+</html>
